@@ -1,0 +1,175 @@
+\documentclass{unswmaths}
+
+\usepackage{unswshortcuts}
+\usepackage[all]{xy}
+\usepackage{csquotes}
+\usepackage{color}
+\usepackage[square,numbers]{natbib}
+
+
+\begin{document}
+
+\subject{Homogeneous Pseudodifferential Operators}
+\author{}
+\title{Harmonic Analysis}
+\studentno{616}
+
+
+\newcommand{\Sc}{\mathcal{S}}
+\setlength\parindent{0pt}
+
+\newcommand{\iD}{\D}
+
+
+\section{Introduction}
+In the Appendix of the 1994 paper by Connes, Sullivan and Teleman, \cite{CST}, the following
+is claimed as a theorem,
+
+Let $d > 1$. Let $T$ be a zeroth order pseudodifferential operator which we
+assume to be dilation invariant, translation invariant and nonzero. Let $f$
+be a function on $\Rl^d$. Then we have that the commutator
+$[T,M_f]$ is in $\mathcal{L}^{d,\infty}$ if and only if $f$ is in the Sobolev
+space $W^{1,d}(\Rl^d)$. 
+
+This is false, and the purpose of this document is to explain carefully
+a counterexample, and to provide a correct restatement of the theorem.
+
+\section{A counterexample}
+We recall some definitions, 
+\begin{definition}
+    A linear map $T:\Sc(\Rl^d)\to C^\infty(\Rl^d)$ is called
+    a generalised pseudodifferential operator
+    if there exists a (measurable) function $\sigma:\Rl^d\to\Cplx$
+    which increases no more rapidly than a polynomial, such that
+    \begin{equation}
+        Tf(x) = \frac{1}{(2\pi)^{d/2}}\int_{\Rl^d} e^{i\langle \xi,x\rangle} \sigma(\xi) \hat{f}(\xi)\,d\xi
+    \end{equation}
+    where $\hat{f}$ is the Fourier transform of $f$.
+    
+    The function $\sigma$ is called the symbol of $T$, and 
+    we write $T = \sigma(\iD)$. 
+    
+    Furthermore, we say that $T$ is zeroth order if $\sigma \in L^\infty(\Rl^d)$.
+\end{definition}
+
+\begin{proposition}
+    Let $T = \sigma(\iD)$ be a zeroth
+    order generalised pseudodifferential operator, then $T$ has an extention to $L^2(\Rl^d)$ that is a bounded map $L^2(\Rl^d)\to L^2(\Rl^d)$.
+\end{proposition}
+
+\begin{definition}
+    A generalised pseudodifferential operator is said to be dilation invariant
+    if it commute with any dilation, and translation invariant if it 
+    commutes with any translation.
+\end{definition}
+
+\begin{definition}
+    A function $\sigma:\Rl^d\to\Rl$ is said to be zeroth
+    degree homogeneous if for any $\lambda > 0$ and all $\xi \in \Rl^d$,
+    we have $\sigma(\lambda \xi) = \sigma(\xi)$. 
+\end{definition}
+
+
+
+\begin{theorem}
+    Generalised pseudodifferential operators, as we have defined them, are always translation
+    invariant.
+\end{theorem}
+\begin{proof}
+    Let $h \in \Rl^d$. Then we simply compute,
+    \begin{equation}
+        Tf(x+h) = \int_{\Rl^d} e^{i\langle \xi,h\rangle + i\langle x,h\rangle} \sigma(\xi) \hat{f}(\xi)d\xi.
+    \end{equation}
+    But we observe that $e^{i\langle \xi,h\rangle}\hat{f}(\xi)$ is the Fourier
+    transform of the function $g(x) := f(x+h)$. Hence $T$ commutes with translations.
+\end{proof}
+
+
+\begin{theorem}
+    Let $T = \sigma(\iD)$ be a generalised pseudodifferential operator. Then
+    if $\sigma$ is homogeneous of degree $0$, then $T$ is dilation invariant.
+\end{theorem}
+\begin{proof}
+    This is a straightforward computation. Let $\lambda > 0$ and $f \in \Sc(\Rl^d)$, then we have
+    \begin{align}
+        Tf(\lambda x) &= \int_{\Rl^d} e^{i\langle \xi,\lambda x\rangle} \sigma(\xi) \hat{f}(\xi)d\xi\\
+                      &= \int_{\Rl^d} e^{i \langle \xi,x\rangle} \sigma(\xi/\lambda) \hat{f}(\xi/\lambda)d(\xi/\lambda)\\
+                      &= \int_{\Rl^d} e^{i\langle \xi,x\rangle} \sigma(\xi) \frac{1}{\lambda}\hat{f}(\xi/\lambda)d\xi.
+    \end{align}
+    However, we see that $\lambda^{-1} \hat{f}(\xi/\lambda)$ is the fourier
+    transform of $g(x) := f(\lambda x)$. Hence $T$ commutes with dilation.
+\end{proof} 
+
+Putting these results together, we see that if $\sigma$ is a nonzero
+bounded function which is homogeneous of order $0$,
+then $\sigma(\iD)$ is a zeroth order generalised pseudodifferential operator which defines
+a bounded linear operator on $L^2(\Rl^d)$ and commutes with dilations and translations.
+
+\begin{proposition}
+    There exists a $\sigma \in L^\infty(\Rl^3)$ which
+    is homogeneous of order zero, and a function $f \in \Sc(\Rl^3)$
+    such that the commutator $[\sigma(\iD),M_f]$ is not compact on $L^2(\Rl^3)$.
+\end{proposition}
+\begin{proof}
+    Denote the coordinates on $\Rl^3$ as $x = (x_1,x_2,x_3)$. Consider
+    the function,
+    \begin{equation}
+        \sigma(x) := \frac{x_1}{\sqrt{x_1^2+x_2^2}}.
+    \end{equation}
+    Then $\sigma$ is homogeneous of order zero and bounded. Hence the associated
+    pseudodifferential operator $\sigma(\iD)$ is bounded on $L^2(\Rl)$, and commutes
+    with all dilations and translations.
+    
+
+    Recall that we have the embedding $L^\infty(\Rl^2)\otimes L^\infty(\Rl) \rightarrow L^\infty(\Rl^3)$
+    which takes an elementary tensor $f_1\otimes f_2$ to the function $f(x_1,x_2,x_3) = f_1(x_1,x_2)f_2(x_3)$. 
+    
+    Similarly, we have an embedding,
+    \begin{equation}
+        \mathcal{B}(L^2(\Rl^2))\otimes \mathcal{B}(L^2(\Rl)) \rightarrow \mathcal{B}(L^2(\Rl^3))
+    \end{equation}
+    which maps the elementary tensor $A \otimes B$ to the operator
+    on $L^2(\Rl^3)$ which acts on functions of the form $f_1(x_1,x_2)f_2(x_3)$
+    by $Af_1 \otimes Bf_2$, and this extends to an operator on $L^2(\Rl^3)$
+    by density.    
+    
+    Now let $f_1 \in \Sc(\Rl^2)$ and $f_2 \in \Sc(\Rl)$. Define $f := f_1\otimes f_2 \in \Sc(\Rl^3)$. 
+    As operators on $L^2(\Rl^3)$, we have $M_f = M_{f_1}\otimes M_{f_2}$.
+    
+    Now we compute,
+    \begin{equation}
+        [\sigma(\iD),M_f] = [\sigma(\iD),M_{f_1}\otimes M_{f_2}]. 
+    \end{equation}   
+    However since $\sigma$ has no dependence on $x_3$, we see that $\sigma(\iD)$
+    acts on $1\otimes f_2$ as the identity, so we have
+    \begin{equation}
+        [\sigma(\iD),M_f] = [\sigma(\iD),M_{f_1}]\otimes M_{f_2}.
+    \end{equation}
+    However the first term on the left hand side, $[\sigma(\iD),M_{f_1}]$
+    is simply an operator on $L^2(\Rl^2)$. Hence we have that $[\sigma(\iD),M_f]$
+    is an elementary tensor of the form $A \otimes M_{f_2}$. Hence, since $M_{f_2}$
+    is not compact, we conclude that $[\sigma(\iD),M_f]$ is not compact.
+\end{proof}
+
+\section{A correct version}
+The following theorem might be true. 
+\begin{theorem}
+    Let $\sigma(x_1,x_2) = x_1/\sqrt{x_1^2+x_2^2}$. 
+    Then we have $[\sigma(\iD),M_f] \in \mathcal{L}^{2,\infty}$
+    if and only if $f \in W^{1,2}(\Rl^2)$. 
+\end{theorem}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\label{Bibliography}
+
+\lhead{\emph{Bibliography}} % Change the page header to say "Bibliography"
+
+\bibliographystyle{unsrtnat} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+
+\bibliography{Bibliography} % The references (bibliography) information are stored in the file named "Bibliography.bib"
+
+
+\end{document}
